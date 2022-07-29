@@ -9,13 +9,18 @@
 /* Begin PBXBuildFile section */
 		F49B428F2894009500BE97D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B428E2894009500BE97D7 /* AppDelegate.swift */; };
 		F49B42912894009500BE97D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42902894009500BE97D7 /* SceneDelegate.swift */; };
-		F49B42932894009500BE97D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42922894009500BE97D7 /* ViewController.swift */; };
 		F49B42962894009500BE97D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B42942894009500BE97D7 /* Main.storyboard */; };
 		F49B42982894009700BE97D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F49B42972894009700BE97D7 /* Assets.xcassets */; };
 		F49B429B2894009700BE97D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B42992894009700BE97D7 /* LaunchScreen.storyboard */; };
 		F49B42A62894009800BE97D7 /* PokemonTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42A52894009800BE97D7 /* PokemonTaskTests.swift */; };
 		F49B42B02894009800BE97D7 /* PokemonTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42AF2894009800BE97D7 /* PokemonTaskUITests.swift */; };
 		F49B42B22894009800BE97D7 /* PokemonTaskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42B12894009800BE97D7 /* PokemonTaskUITestsLaunchTests.swift */; };
+		F49B42C52894049D00BE97D7 /* Extension+CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42C42894049D00BE97D7 /* Extension+CustomUIView.swift */; };
+		F49B42C72894057600BE97D7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42C62894057600BE97D7 /* HomeViewController.swift */; };
+		F49B42C92894087B00BE97D7 /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42C82894087B00BE97D7 /* Extension+UIFont.swift */; };
+		F49B42CC28940BEC00BE97D7 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42CB28940BEC00BE97D7 /* ViewConstants.swift */; };
+		F49B42CE28940CDB00BE97D7 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42CD28940CDB00BE97D7 /* Extension+Int.swift */; };
+		F49B42D128940E7900BE97D7 /* Extension+CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42D028940E7900BE97D7 /* Extension+CustomUIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +44,6 @@
 		F49B428B2894009500BE97D7 /* PokemonTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B428E2894009500BE97D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49B42902894009500BE97D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F49B42922894009500BE97D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F49B42952894009500BE97D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F49B42972894009700BE97D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F49B429A2894009700BE97D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,12 @@
 		F49B42AB2894009800BE97D7 /* PokemonTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B42AF2894009800BE97D7 /* PokemonTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTaskUITests.swift; sourceTree = "<group>"; };
 		F49B42B12894009800BE97D7 /* PokemonTaskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTaskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F49B42C42894049D00BE97D7 /* Extension+CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CustomUIView.swift"; sourceTree = "<group>"; };
+		F49B42C62894057600BE97D7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F49B42C82894087B00BE97D7 /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
+		F49B42CB28940BEC00BE97D7 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
+		F49B42CD28940CDB00BE97D7 /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
+		F49B42D028940E7900BE97D7 /* Extension+CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CustomUIButton.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +109,13 @@
 		F49B428D2894009500BE97D7 /* PokemonTask */ = {
 			isa = PBXGroup;
 			children = (
-				F49B428E2894009500BE97D7 /* AppDelegate.swift */,
-				F49B42902894009500BE97D7 /* SceneDelegate.swift */,
-				F49B42922894009500BE97D7 /* ViewController.swift */,
-				F49B42942894009500BE97D7 /* Main.storyboard */,
-				F49B42972894009700BE97D7 /* Assets.xcassets */,
-				F49B42992894009700BE97D7 /* LaunchScreen.storyboard */,
+				F49B42CA28940BBE00BE97D7 /* AppConstants */,
+				F49B42C32894048400BE97D7 /* Extensions */,
+				F49B42C1289402A900BE97D7 /* Supporting Files */,
+				F49B42C2289402B500BE97D7 /* Screens */,
+				F49B42C02894029800BE97D7 /* ViewModels */,
+				F49B42BF2894028F00BE97D7 /* Views */,
+				F49B42BE2894028100BE97D7 /* Models */,
 				F49B429C2894009700BE97D7 /* Info.plist */,
 			);
 			path = PokemonTask;
@@ -125,6 +136,66 @@
 				F49B42B12894009800BE97D7 /* PokemonTaskUITestsLaunchTests.swift */,
 			);
 			path = PokemonTaskUITests;
+			sourceTree = "<group>";
+		};
+		F49B42BE2894028100BE97D7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F49B42BF2894028F00BE97D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F49B42C62894057600BE97D7 /* HomeViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F49B42C02894029800BE97D7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F49B42C1289402A900BE97D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F49B42972894009700BE97D7 /* Assets.xcassets */,
+				F49B428E2894009500BE97D7 /* AppDelegate.swift */,
+				F49B42902894009500BE97D7 /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F49B42C2289402B500BE97D7 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F49B42942894009500BE97D7 /* Main.storyboard */,
+				F49B42992894009700BE97D7 /* LaunchScreen.storyboard */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		F49B42C32894048400BE97D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F49B42C42894049D00BE97D7 /* Extension+CustomUIView.swift */,
+				F49B42C82894087B00BE97D7 /* Extension+UIFont.swift */,
+				F49B42CD28940CDB00BE97D7 /* Extension+Int.swift */,
+				F49B42D028940E7900BE97D7 /* Extension+CustomUIButton.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F49B42CA28940BBE00BE97D7 /* AppConstants */ = {
+			isa = PBXGroup;
+			children = (
+				F49B42CB28940BEC00BE97D7 /* ViewConstants.swift */,
+			);
+			path = AppConstants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +329,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F49B42932894009500BE97D7 /* ViewController.swift in Sources */,
+				F49B42CC28940BEC00BE97D7 /* ViewConstants.swift in Sources */,
+				F49B42C92894087B00BE97D7 /* Extension+UIFont.swift in Sources */,
 				F49B428F2894009500BE97D7 /* AppDelegate.swift in Sources */,
+				F49B42CE28940CDB00BE97D7 /* Extension+Int.swift in Sources */,
+				F49B42C52894049D00BE97D7 /* Extension+CustomUIView.swift in Sources */,
+				F49B42D128940E7900BE97D7 /* Extension+CustomUIButton.swift in Sources */,
 				F49B42912894009500BE97D7 /* SceneDelegate.swift in Sources */,
+				F49B42C72894057600BE97D7 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +519,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,6 +548,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
