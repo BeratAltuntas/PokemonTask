@@ -12,6 +12,11 @@ class HomeViewController: UIViewController {
     private var contentView: UIView!
     private var refreshButton: CustomUIButton!
     private var cardView: CustomUIView!
+    private var titleLabel: UILabel!
+    private var imageView: UIImageView!
+    private var featureLabels: [UILabel]!
+    private var screenSize: CGRect = UIScreen.main.bounds
+    private var isFirstInside: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +34,21 @@ class HomeViewController: UIViewController {
         scrollView.addSubview(contentView)
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 890),
+            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            
             
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 890)
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: screenSize.height)
+            //contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            //contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            
+            
         ])
         
         contentView.backgroundColor = ViewConstants.customBackgroundColor
@@ -49,6 +59,8 @@ class HomeViewController: UIViewController {
         setupScrollView()
         createRefreshButton()
         createPokemonViewContainer()
+        createPokemonTitleLabel()
+        createPokemonImageView()
     }
     
     private func createRefreshButton() {
@@ -86,18 +98,99 @@ class HomeViewController: UIViewController {
         cardView.backgroundColor = .white
         
         // CardView Shadow
-        cardView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).cgColor
-        cardView.layer.shadowOffset = CGSize(width: 1.0, height: 3.0)
-        cardView.layer.shadowOpacity = 2.5
-        cardView.layer.shadowRadius = 3.5
+        cardView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.45).cgColor
+        cardView.layer.shadowOffset = CGSize(width: 1.0, height: 3.5)
+        cardView.layer.shadowOpacity = 4.5
+        cardView.layer.shadowRadius = 5.5
         contentView.addSubview(cardView)
         
+        layoutConstraints()
+        
+    }
+    
+    private func createPokemonTitleLabel() {
+        titleLabel = UILabel()
+        titleLabel.text = "Balbasour" // pokemonModel.name
+        titleLabel.font = .rounded(ofSize: 24, weight: .regular)
+        titleLabel.tintColor = .black
+        titleLabel.textAlignment = .center
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardView.addSubview(titleLabel)
+        
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(lessThanOrEqualTo: refreshButton.bottomAnchor, constant: 86),
-            cardView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 45),
-            cardView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -45),
-            cardView.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -182),
+            titleLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 18),
+            titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 30),
+            titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -30)
+        ])
+    }
+    
+    private func createPokemonImageView() {
+        imageView = UIImageView()
+        imageView.image = UIImage(systemName: "terminal.fill") // pokemon.image
+        imageView.contentMode = .scaleToFill
+        imageView.startAnimating()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 136),
+            imageView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 114),
+            imageView.heightAnchor.constraint(equalToConstant: 114)
         ])
         
+    }
+    
+    private func createPokemonFeatureLabels() {
+        
+    }
+    
+    private func layoutConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            
+            
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+            
+        ])
+        NSLayoutConstraint.activate([
+            cardView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            cardView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            cardView.widthAnchor.constraint(equalToConstant: screenSize.width / 2),
+            cardView.widthAnchor.constraint(lessThanOrEqualToConstant: screenSize.height / 2 + 200),
+            cardView.heightAnchor.constraint(greaterThanOrEqualToConstant: screenSize.height / 2)
+            
+        ])
+        
+        contentView.layoutIfNeeded()
+        cardView.layoutIfNeeded()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        //super.viewWillTransition(to: size, with: coordinator)
+        screenSize = UIScreen.main.bounds
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            
+        } else {
+            print("Portrait")
+        }
+        
+        if isFirstInside {
+            layoutConstraints()
+            print("w \(screenSize.width)")
+            print("h \(screenSize.height)")
+            isFirstInside = false
+        } else {
+            isFirstInside = true
+        }
     }
 }
