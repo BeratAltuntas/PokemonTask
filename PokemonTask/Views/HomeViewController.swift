@@ -6,8 +6,15 @@
 //
 
 import UIKit
+enum UIUserInterfaceIdiom : Int {
+    case unspecified
+    
+    case phone // iPhone and iPod touch style UI
+    case pad   // iPad style UI (also includes macOS Catalyst)
+}
 
-class HomeViewController: UIViewController {
+
+final class HomeViewController: UIViewController {
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     private var refreshButton: CustomUIButton!
@@ -16,7 +23,6 @@ class HomeViewController: UIViewController {
     private var imageView: UIImageView!
     private var featureLabels: [UILabel]!
     private var screenSize: CGRect = UIScreen.main.bounds
-    private var isFirstInside: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,28 +152,31 @@ class HomeViewController: UIViewController {
     }
     
     private func layoutConstraints() {
-        NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
-            
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-            
-        ])
+        
+        if .pad == UIDevice.current.userInterfaceIdiom {
+            // ipad screen config
+            NSLayoutConstraint.activate([
+                scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
+                scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+                
+                
+                contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+                contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+                contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+                
+            ])
+        }
+        
         NSLayoutConstraint.activate([
             cardView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             cardView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            cardView.widthAnchor.constraint(equalToConstant: screenSize.width / 2),
-            cardView.widthAnchor.constraint(lessThanOrEqualToConstant: screenSize.height / 2 + 200),
+            cardView.widthAnchor.constraint(equalToConstant: screenSize.width / 2 + 100),
             cardView.heightAnchor.constraint(greaterThanOrEqualToConstant: screenSize.height / 2)
-            
         ])
         
         contentView.layoutIfNeeded()
@@ -175,22 +184,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        //super.viewWillTransition(to: size, with: coordinator)
         screenSize = UIScreen.main.bounds
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            
-        } else {
-            print("Portrait")
-        }
-        
-        if isFirstInside {
-            layoutConstraints()
-            print("w \(screenSize.width)")
-            print("h \(screenSize.height)")
-            isFirstInside = false
-        } else {
-            isFirstInside = true
-        }
+        layoutConstraints()
     }
 }
