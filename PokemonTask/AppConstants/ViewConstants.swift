@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 enum ViewConstants {
-    // UIColor
+    // MARK: - UIColor
     static let customBackgroundColor = UIColor(named: "BackgroundColor")
     
     
-    // UIButton
+    // MARK: - UIRefreshButton
     static let customRefreshButtonWidth = 48
     static let customRefreshButtonHeight = 48
     static let customRefreshButtonCornerRadius = 24
@@ -23,9 +23,43 @@ enum ViewConstants {
     static let customRefreshButtonLeftConstant = 16
     
     
+    // MARK: - UILabels
+    // Title Label
+    static let titleLabelFontSize = 24
+    static let titleLabelTopConst = 18
+    static let titleLabelHeightConst = 29
+    static let titleLabelLeadingConst = 30
+    static let titleLabelTrailingConst = -30
     
-    // UIView
-    static let customUIViewWidth = 300
-    static let customUIViewHeight = 480
-    static let customUIViewCornerRadius = 36
+    // Feature Labels
+    static let featureTitleLabelFontSize = 21
+    static let featureHPTitleName = "hp"
+    static let featureATTACKTitleName = "attack"
+    static let featureDEFENSETitleName = "defense"
+    static let featurePointLabelFontSize = 32
+    
+    static let hpTitleLabelTopConst = 101
+    static let hpTitleLabelLeadingConst = 18
+    static let hpTitleLabelHeightConst = 21
+    
+    static let defenseTitleLabelTrailingConst = -18
+    
+    static let hpPointTitleLabelBottomConst = -23
+    static let hpPointTitleLabelHeightConst = 38
+    
+    
+    // MARK: - UIImageView
+    static let imageViewIphoneHeight = 100
+    static let imageViewIpadHeight = 200
+    
+    
+    
+    // MARK: - UICardView
+    static let cardViewIpadWidthConst = 700
+    static let cardViewIpadHeightConst = 480
+    static let cardViewIphoneWidthConst = 300
+    static let cardViewIphoneHeightConst = 480
+    
+    static let cardViewIphoneCornerRadius = 36
+    static let cardViewIpadCornerRadius = 72
 }
