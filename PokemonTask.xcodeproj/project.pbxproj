@@ -25,6 +25,8 @@
 		F49B42CC28940BEC00BE97D7 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42CB28940BEC00BE97D7 /* ViewConstants.swift */; };
 		F49B42CE28940CDB00BE97D7 /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42CD28940CDB00BE97D7 /* Extension+Int.swift */; };
 		F49B42D128940E7900BE97D7 /* Extension+CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42D028940E7900BE97D7 /* Extension+CustomUIButton.swift */; };
+		F4B8BA0828982AD900CC7C21 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B8BA0728982AD900CC7C21 /* HomeViewModel.swift */; };
+		F4B8BA0A2898412500CC7C21 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B8BA092898412500CC7C21 /* Extension+String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		F49B42CB28940BEC00BE97D7 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		F49B42CD28940CDB00BE97D7 /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		F49B42D028940E7900BE97D7 /* Extension+CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CustomUIButton.swift"; sourceTree = "<group>"; };
+		F4B8BA0728982AD900CC7C21 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F4B8BA092898412500CC7C21 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 		F49B42C02894029800BE97D7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F4B8BA0728982AD900CC7C21 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				F49B42C82894087B00BE97D7 /* Extension+UIFont.swift */,
 				F49B42CD28940CDB00BE97D7 /* Extension+Int.swift */,
 				F49B42D028940E7900BE97D7 /* Extension+CustomUIButton.swift */,
+				F4B8BA092898412500CC7C21 /* Extension+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,6 +363,8 @@
 				F49B42CE28940CDB00BE97D7 /* Extension+Int.swift in Sources */,
 				F49B42C52894049D00BE97D7 /* Extension+CustomUIView.swift in Sources */,
 				F498D3142897F0450082D6B4 /* Pokemon.swift in Sources */,
+				F4B8BA0A2898412500CC7C21 /* Extension+String.swift in Sources */,
+				F4B8BA0828982AD900CC7C21 /* HomeViewModel.swift in Sources */,
 				F49B42D128940E7900BE97D7 /* Extension+CustomUIButton.swift in Sources */,
 				F49B42912894009500BE97D7 /* SceneDelegate.swift in Sources */,
 				F49B42C72894057600BE97D7 /* HomeViewController.swift in Sources */,

@@ -8,6 +8,8 @@
 import Foundation
 
 enum DataEndPoints {
+    static let questMark = "?"
+    static let forwardSlash = "/"
     static let offset = "offset="
     static let limit = "limit="
     static let getPokemons = "https://pokeapi.co/api/v2/pokemon"

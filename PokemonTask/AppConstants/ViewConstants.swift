@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - ViewConstants
 enum ViewConstants {
     // MARK: - UIColor
     static let customBackgroundColor = UIColor(named: "BackgroundColor")
@@ -47,6 +48,9 @@ enum ViewConstants {
     static let hpPointTitleLabelBottomConst = -23
     static let hpPointTitleLabelHeightConst = 38
     
+    // Loading Label
+    static let loadingLabelFontSize = 24
+    static let loadingLabelText = "Loading..."
     
     // MARK: - UIImageView
     static let imageViewIphoneHeight = 100
@@ -62,4 +66,13 @@ enum ViewConstants {
     
     static let cardViewIphoneCornerRadius = 36
     static let cardViewIpadCornerRadius = 72
+}
+
+
+// MARK: - Enum UIUserInterfaceIdiom
+enum UIUserInterfaceIdiom : Int {
+    case unspecified
+    
+    case phone // iPhone and iPod touch style UI
+    case pad   // iPad style UI (also includes macOS Catalyst)
 }

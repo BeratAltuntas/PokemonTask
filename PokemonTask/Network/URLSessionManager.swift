@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 struct ApiError: Error {
     let desc: String?
@@ -15,10 +16,7 @@ struct ApiError: Error {
 final class URLSessionManager {
     static let shared = URLSessionManager()
     typealias Completion<T> = (Result<T, ApiError>)-> Void where T: Decodable
-
-    private init(){
-        
-    }
+    typealias CompletionImage = (_ success: Bool,_ result: UIImage)-> Void
     
     func FetchData<T: Decodable>(endPoint: String, type: T?.Type, completion: @escaping Completion<T> ) {
         guard let url = URL(string: endPoint) else { return }
@@ -41,6 +39,16 @@ final class URLSessionManager {
             }
         })
         task.resume()
+    }
+    
+    func downloadImage(url: URL, completion: @escaping CompletionImage) {
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    completion(true,image)
+                }
+            }
+        }
     }
 }
 

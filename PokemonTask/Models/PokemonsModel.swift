@@ -11,11 +11,11 @@ struct PokemonsModel: Codable {
     let count: Int?
     let next: String?
     let previous: String?
-    let results: [Result]?
+    let results: [PokemonsResult]?
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct PokemonsResult: Codable {
     let name: String?
     let url: String?
 }
