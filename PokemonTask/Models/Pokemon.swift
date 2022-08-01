@@ -21,7 +21,7 @@ struct Pokemon {
     let moves: [Move]?
     let name: String?
     let order: Int?
-    let pastTypes: [Any?]?
+    let pastTypes: [Any]?
     let species: Species?
     let sprites: Sprites?
     let stats: [Stat]?
@@ -30,48 +30,48 @@ struct Pokemon {
 }
 
 // MARK: - Ability
-struct Ability {
+struct Ability: Codable {
     let ability: Species?
     let isHidden: Bool?
     let slot: Int?
 }
 
 // MARK: - Species
-struct Species {
+struct Species: Codable {
     let name: String?
     let url: String?
 }
 
 // MARK: - GameIndex
-struct GameIndex {
+struct GameIndex: Codable {
     let gameIndex: Int?
     let version: Species?
 }
 
 // MARK: - Move
-struct Move {
+struct Move: Codable {
     let move: Species?
     let versionGroupDetails: [VersionGroupDetail]?
 }
 
 // MARK: - VersionGroupDetail
-struct VersionGroupDetail {
+struct VersionGroupDetail: Codable {
     let levelLearnedAt: Int?
     let moveLearnMethod, versionGroup: Species?
 }
 
 // MARK: - GenerationV
-struct GenerationV {
+struct GenerationV: Codable {
     let blackWhite: Sprites?
 }
 
 // MARK: - GenerationIv
-struct GenerationIv {
+struct GenerationIv: Codable {
     let diamondPearl, heartgoldSoulsilver, platinum: Sprites?
 }
 
 // MARK: - Versions
-struct Versions {
+struct Versions: Codable {
     let generationI: GenerationI?
     let generationIi: GenerationIi?
     let generationIii: GenerationIii?
@@ -83,20 +83,20 @@ struct Versions {
 }
 
 // MARK: - Sprites
-class Sprites {
+class Sprites: Codable {
     let backDefault: String?
-    let backFemale: NSNull?
+    let backFemale: String?
     let backShiny: String?
-    let backShinyFemale: NSNull?
+    let backShinyFemale: String?
     let frontDefault: String?
-    let frontFemale: NSNull?
+    let frontFemale: String?
     let frontShiny: String?
-    let frontShinyFemale: NSNull?
+    let frontShinyFemale: String?
     let other: Other?
     let versions: Versions?
     let animated: Sprites?
     
-    init(backDefault: String?, backFemale: NSNull?, backShiny: String?, backShinyFemale: NSNull?, frontDefault: String?, frontFemale: NSNull?, frontShiny: String?, frontShinyFemale: NSNull?, other: Other?, versions: Versions?, animated: Sprites?) {
+    init(backDefault: String?, backFemale: String?, backShiny: String?, backShinyFemale: String?, frontDefault: String?, frontFemale: String?, frontShiny: String?, frontShinyFemale: String?, other: Other?, versions: Versions?, animated: Sprites?) {
         self.backDefault = backDefault
         self.backFemale = backFemale
         self.backShiny = backShiny
@@ -112,90 +112,90 @@ class Sprites {
 }
 
 // MARK: - GenerationI
-struct GenerationI {
+struct GenerationI: Codable {
     let redBlue, yellow: RedBlue?
 }
 
 // MARK: - RedBlue
-struct RedBlue {
+struct RedBlue: Codable {
     let backDefault, backGray, backTransparent, frontDefault: String?
     let frontGray, frontTransparent: String?
 }
 
 // MARK: - GenerationIi
-struct GenerationIi {
+struct GenerationIi: Codable {
     let crystal: Crystal?
     let gold, silver: Gold?
 }
 
 // MARK: - Crystal
-struct Crystal {
+struct Crystal: Codable {
     let backDefault, backShiny, backShinyTransparent, backTransparent: String?
     let frontDefault, frontShiny, frontShinyTransparent, frontTransparent: String?
 }
 
 // MARK: - Gold
-struct Gold {
+struct Gold: Codable {
     let backDefault, backShiny, frontDefault, frontShiny: String?
     let frontTransparent: String?
 }
 
 // MARK: - GenerationIii
-struct GenerationIii {
+struct GenerationIii: Codable {
     let emerald: Emerald?
     let fireredLeafgreen, rubySapphire: Gold?
 }
 
 // MARK: - Emerald
-struct Emerald {
+struct Emerald: Codable {
     let frontDefault, frontShiny: String?
 }
 
 // MARK: - Home
-struct Home {
+struct Home: Codable {
     let frontDefault: String?
-    let frontFemale: NSNull?
+    let frontFemale: String?
     let frontShiny: String?
-    let frontShinyFemale: NSNull?
+    let frontShinyFemale: String?
 }
 
 // MARK: - GenerationVii
-struct GenerationVii {
+struct GenerationVii: Codable {
     let icons: DreamWorld?
     let ultraSunUltraMoon: Home?
 }
 
 // MARK: - DreamWorld
-struct DreamWorld {
+struct DreamWorld: Codable {
     let frontDefault: String?
-    let frontFemale: NSNull?
+    let frontFemale: String?
 }
 
 // MARK: - GenerationViii
-struct GenerationViii {
+struct GenerationViii: Codable {
     let icons: DreamWorld?
 }
 
 // MARK: - Other
-struct Other {
+struct Other: Codable {
     let dreamWorld: DreamWorld?
     let home: Home?
     let officialArtwork: OfficialArtwork?
 }
 
 // MARK: - OfficialArtwork
-struct OfficialArtwork {
+struct OfficialArtwork: Codable {
     let frontDefault: String?
 }
 
 // MARK: - Stat
-struct Stat {
+struct Stat: Codable {
     let baseStat, effort: Int?
     let stat: Species?
 }
 
 // MARK: - TypeElement
-struct TypeElement {
+struct TypeElement: Codable {
     let slot: Int?
     let type: Species?
 }
