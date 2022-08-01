@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F498D3142897F0450082D6B4 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498D3132897F0450082D6B4 /* Pokemon.swift */; };
+		F498D3162898012A0082D6B4 /* PokemonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498D3152898012A0082D6B4 /* PokemonsModel.swift */; };
+		F498D318289802BC0082D6B4 /* DataEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498D317289802BC0082D6B4 /* DataEndPoints.swift */; };
+		F498D31B289803AC0082D6B4 /* URLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498D31A289803AC0082D6B4 /* URLSessionManager.swift */; };
 		F49B428F2894009500BE97D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B428E2894009500BE97D7 /* AppDelegate.swift */; };
 		F49B42912894009500BE97D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B42902894009500BE97D7 /* SceneDelegate.swift */; };
 		F49B42962894009500BE97D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49B42942894009500BE97D7 /* Main.storyboard */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F498D3132897F0450082D6B4 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		F498D3152898012A0082D6B4 /* PokemonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsModel.swift; sourceTree = "<group>"; };
+		F498D317289802BC0082D6B4 /* DataEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEndPoints.swift; sourceTree = "<group>"; };
+		F498D31A289803AC0082D6B4 /* URLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionManager.swift; sourceTree = "<group>"; };
 		F49B428B2894009500BE97D7 /* PokemonTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49B428E2894009500BE97D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49B42902894009500BE97D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F498D319289803940082D6B4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F498D317289802BC0082D6B4 /* DataEndPoints.swift */,
+				F498D31A289803AC0082D6B4 /* URLSessionManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		F49B42822894009500BE97D7 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +126,7 @@
 		F49B428D2894009500BE97D7 /* PokemonTask */ = {
 			isa = PBXGroup;
 			children = (
+				F498D319289803940082D6B4 /* Network */,
 				F49B42CA28940BBE00BE97D7 /* AppConstants */,
 				F49B42C32894048400BE97D7 /* Extensions */,
 				F49B42C1289402A900BE97D7 /* Supporting Files */,
@@ -141,6 +159,8 @@
 		F49B42BE2894028100BE97D7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F498D3132897F0450082D6B4 /* Pokemon.swift */,
+				F498D3152898012A0082D6B4 /* PokemonsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,14 +349,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F498D31B289803AC0082D6B4 /* URLSessionManager.swift in Sources */,
 				F49B42CC28940BEC00BE97D7 /* ViewConstants.swift in Sources */,
 				F49B42C92894087B00BE97D7 /* Extension+UIFont.swift in Sources */,
 				F49B428F2894009500BE97D7 /* AppDelegate.swift in Sources */,
+				F498D3162898012A0082D6B4 /* PokemonsModel.swift in Sources */,
 				F49B42CE28940CDB00BE97D7 /* Extension+Int.swift in Sources */,
 				F49B42C52894049D00BE97D7 /* Extension+CustomUIView.swift in Sources */,
+				F498D3142897F0450082D6B4 /* Pokemon.swift in Sources */,
 				F49B42D128940E7900BE97D7 /* Extension+CustomUIButton.swift in Sources */,
 				F49B42912894009500BE97D7 /* SceneDelegate.swift in Sources */,
 				F49B42C72894057600BE97D7 /* HomeViewController.swift in Sources */,
+				F498D318289802BC0082D6B4 /* DataEndPoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
