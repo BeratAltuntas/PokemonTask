@@ -27,6 +27,7 @@ final class URLSessionManager {
             }
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(.init(desc: "httpResponse Error")))
                 return
             }
             do {

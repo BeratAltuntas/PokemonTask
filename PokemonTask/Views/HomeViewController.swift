@@ -337,7 +337,6 @@ final class HomeViewController: UIViewController {
     @objc private func getNewPokemon() {
         showLoadingLabel()
         viewModel.fetchNewRandomPokemon()
-        Flip()
     }
 }
 
@@ -362,13 +361,15 @@ extension HomeViewController: HomeViewModelDelegate {
         }
     }
     
-    func Flip() {
-        let transationOpt = UIView.AnimationOptions.transitionFlipFromLeft
-        UIView.transition(with: self.cardView, duration: 1.3, options: transationOpt) {
-            
-        } completion: { finished in
-            if finished {
-                self.hideLoadingLabel()
+    func flip() {
+        DispatchQueue.main.async { [weak self] in
+            let transationOpt = UIView.AnimationOptions.transitionFlipFromLeft
+            UIView.transition(with: (self?.cardView)!, duration: 1.3, options: transationOpt) {
+                
+            } completion: { finished in
+                if finished {
+                    self?.hideLoadingLabel()
+                }
             }
         }
     }

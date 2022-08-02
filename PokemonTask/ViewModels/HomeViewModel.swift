@@ -23,6 +23,7 @@ protocol HomeViewModelDelegate: AnyObject {
     func loadImage(image: Any)
     func hideLoadingLabel()
     func showLoadingLabel()
+    func flip()
 }
 
 // MARK: - HomeViewModel
@@ -34,7 +35,7 @@ final class HomeViewModel {
     
     private func fetchPokemonCount(completion: @escaping CompletionOnlySuccess) {
         // returning pokemon count
-        URLSessionManager.shared.FetchData(endPoint: DataEndPoints.getPokemons, type: PokemonsModel?.self) {[weak self ] result in
+        URLSessionManager.shared.FetchData(endPoint: DataEndPoints.getPokemons, type: PokemonsModel?.self) { [weak self ] result in
             switch result {
             case .success(let response):
                 guard let count = response.count else { return }
@@ -53,12 +54,12 @@ final class HomeViewModel {
         
         let randomPoke = Int.random(in: 1...pokeCount)
         let endPoint = DataEndPoints.getPokemons + DataEndPoints.forwardSlash + randomPoke.ToString()
-        print(randomPoke)
-        URLSessionManager.shared.FetchData(endPoint: endPoint, type: Pokemon?.self) { result in
+        URLSessionManager.shared.FetchData(endPoint: endPoint, type: Pokemon?.self) { [weak self] result in
             switch result {
             case .success(let response):
-                self.pokemon = response
-                self.delegate.updatePokemonFatures()
+                self?.pokemon = response
+                print(response)
+                self?.delegate.updatePokemonFatures()
                 completion(true)
             case .failure(let error):
                 print(error)
@@ -70,7 +71,7 @@ final class HomeViewModel {
         if pokemonCount != -1 {
             guard let imageUrlString = pokemon.sprites?.front_default else { return }
             let url = URL(string: imageUrlString)!
-            URLSessionManager.shared.downloadImage(url: url) {[weak self] success, response in
+            URLSessionManager.shared.downloadImage(url: url) { [weak self] success, response in
                 if success {
                     self?.delegate.loadImage(image: response)
                     completion(true)
@@ -85,29 +86,33 @@ final class HomeViewModel {
 // MARK: - Extension: HomeViewModelProtocol
 extension HomeViewModel: HomeViewModelProtocol {
     func loadViewAttiributes() {
-        fetchPokemonCount { success in
+        fetchPokemonCount { [weak self] success in
             if success {
-                self.delegate.hideLoadingLabel()
-                self.fetchNewRandomPokemon()
+                self?.delegate.hideLoadingLabel()
+                self?.fetchNewRandomPokemon()
             } else {
+                self?.loadViewAttiributes()
             }
         }
     }
     
     func fetchNewRandomPokemon() {
-        fetchRandomPokemon { success in
+        fetchRandomPokemon { [weak self] success in
             if success {
-                self.delegate.hideLoadingLabel()
-                self.getPokemonImage()
-                
+                self?.delegate.flip()
+                self?.delegate.hideLoadingLabel()
+                self?.getPokemonImage()
+            } else {
+                self?.fetchNewRandomPokemon()
             }
         }
     }
     
     func getPokemonImage() {
-        getImage { success in
+        getImage { [weak self] success in
             if success {
-                self.delegate.hideLoadingLabel()
+                self?.delegate.hideLoadingLabel()
+                self?.delegate.hideLoadingLabel()
             }
         }
     }
