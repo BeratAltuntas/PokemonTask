@@ -20,7 +20,7 @@ final class HomeViewController: UIViewController {
     private var refreshButton: CustomUIButton!
     private var cardView: CustomUIView!
     private var pokemonNameTitleLabel: UILabel!
-    private var imageView: UIImageView!
+    private var pokemonImageView: UIImageView!
     
     private var hpTitleLabel: UILabel!
     private var hpPointTitleLabel: UILabel!
@@ -31,16 +31,16 @@ final class HomeViewController: UIViewController {
     private var defenseTitleLabel: UILabel!
     private var defensePointTitleLabel: UILabel!
     
-    private var loadingLabel: UILabel!
+    private var loadingLabel: CustomUILabel!
     
     private var screenSize: CGRect = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideElements()
         let vm = HomeViewModel()
         viewModel = vm
         setupView()
+        showLoadingLabel()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -82,7 +82,7 @@ final class HomeViewController: UIViewController {
         viewModel.loadViewAttiributes()
         setupScrollView()
         createRefreshButton()
-        createPokemonViewContainer()
+        createPokemonCardView()
         createPokemonTitleLabel()
         createLoadingLabel()
         createPokemonImageView()
@@ -120,8 +120,8 @@ final class HomeViewController: UIViewController {
         ])
     }
     
-    // MARK: createPokemonViewContainer
-    private func createPokemonViewContainer() {
+    // MARK: createPokemonCardView
+    private func createPokemonCardView() {
         cardView = CustomUIView()
         cardView.translatesAutoresizingMaskIntoConstraints = false
         cardView.cornerRadius = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.cardViewIphoneCornerRadius.ToCGFloat() : ViewConstants.cardViewIpadCornerRadius.ToCGFloat()
@@ -133,14 +133,13 @@ final class HomeViewController: UIViewController {
         cardView.layer.shadowOpacity = 4.5
         cardView.layer.shadowRadius = 5.5
         contentView.addSubview(cardView)
-        
         layoutConstraints()
     }
     
     // MARK: createPokemonTitleLabel
     private func createPokemonTitleLabel() {
         pokemonNameTitleLabel = UILabel()
-        pokemonNameTitleLabel.text = "Balbasour" // pokemonModel.name
+        pokemonNameTitleLabel.text = "" // pokemonModel.name
         pokemonNameTitleLabel.font = .rounded(ofSize: ViewConstants.titleLabelFontSize.ToCGFloat(), weight: .regular)
         pokemonNameTitleLabel.tintColor = .black
         pokemonNameTitleLabel.textAlignment = .center
@@ -155,29 +154,35 @@ final class HomeViewController: UIViewController {
         ])
     }
     
+    
     // MARK: createPokemonImageView
     private func createPokemonImageView() {
-        imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.startAnimating()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.addSubview(imageView)
+        pokemonImageView = UIImageView()
+        pokemonImageView.contentMode = .scaleAspectFit
+        pokemonImageView.startAnimating()
+        pokemonImageView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.addSubview(pokemonImageView)
         let imageViewHeight = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.imageViewIphoneHeight : ViewConstants.imageViewIpadHeight
+        let imageViewWidth = UIDevice.current.userInterfaceIdiom == .pad ? ViewConstants.imageViewIphoneWidth : ViewConstants.imageViewIpadWidth
         
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: imageViewHeight.ToCGFloat()),
-            imageView.widthAnchor.constraint(equalToConstant: imageViewHeight.ToCGFloat())
+            pokemonImageView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            pokemonImageView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor),
+            pokemonImageView.heightAnchor.constraint(equalToConstant: imageViewHeight.ToCGFloat()),
+            pokemonImageView.widthAnchor.constraint(equalToConstant: imageViewWidth.ToCGFloat())
         ])
-        
     }
+    
     // MARK: createLoadingLabel
     private func createLoadingLabel() {
-        loadingLabel = UILabel()
-        loadingLabel.text = ViewConstants.loadingLabelText // hp
+        loadingLabel = CustomUILabel()
+        loadingLabel.text = ViewConstants.loadingLabelText // loading
         loadingLabel.font = .rounded(ofSize: ViewConstants.loadingLabelFontSize.ToCGFloat(), weight: .regular)
         loadingLabel.isHidden = false
+        loadingLabel.layer.masksToBounds = true
+        loadingLabel.cornerRadius = ViewConstants.cardViewIpadCornerRadius.ToCGFloat()
+        loadingLabel.layer.zPosition = 10
+        loadingLabel.backgroundColor = .white
         loadingLabel.tintColor = .black
         loadingLabel.textAlignment = .center
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -205,7 +210,7 @@ final class HomeViewController: UIViewController {
         cardView.addSubview(hpTitleLabel)
         
         hpPointTitleLabel = UILabel()
-        hpPointTitleLabel.text = "45" // hp point
+        hpPointTitleLabel.text = "" // hp point
         hpPointTitleLabel.font = .rounded(ofSize: ViewConstants.featurePointLabelFontSize.ToCGFloat(), weight: .medium)
         hpPointTitleLabel.tintColor = .black
         hpPointTitleLabel.textAlignment = .center
@@ -224,7 +229,7 @@ final class HomeViewController: UIViewController {
         cardView.addSubview(attackTitleLabel)
         
         attackPointTitleLabel = UILabel()
-        attackPointTitleLabel.text = "49" // attack point
+        attackPointTitleLabel.text = "" // attack point
         attackPointTitleLabel.font = .rounded(ofSize: ViewConstants.featurePointLabelFontSize.ToCGFloat(), weight: .medium)
         attackPointTitleLabel.tintColor = .black
         attackPointTitleLabel.textAlignment = .center
@@ -242,7 +247,7 @@ final class HomeViewController: UIViewController {
         cardView.addSubview(defenseTitleLabel)
         
         defensePointTitleLabel = UILabel()
-        defensePointTitleLabel.text = "49" // defense point
+        defensePointTitleLabel.text = "" // defense point
         defensePointTitleLabel.font = .rounded(ofSize: ViewConstants.featurePointLabelFontSize.ToCGFloat(), weight: .medium)
         defensePointTitleLabel.tintColor = .black
         defensePointTitleLabel.textAlignment = .center
@@ -252,7 +257,7 @@ final class HomeViewController: UIViewController {
         let labelwidth = (((screenSize.width / 2 + 100) - 36) / 3)
         
         NSLayoutConstraint.activate([
-            hpTitleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: ViewConstants.hpTitleLabelTopConst.ToCGFloat()),
+            hpTitleLabel.topAnchor.constraint(lessThanOrEqualTo: pokemonImageView.bottomAnchor, constant: ViewConstants.hpTitleLabelTopConst.ToCGFloat()),
             hpTitleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: ViewConstants.hpTitleLabelLeadingConst.ToCGFloat()),
             hpTitleLabel.widthAnchor.constraint(equalToConstant: labelwidth),
             hpTitleLabel.heightAnchor.constraint(equalToConstant: ViewConstants.hpTitleLabelHeightConst.ToCGFloat()),
@@ -318,6 +323,7 @@ final class HomeViewController: UIViewController {
         } else {
             // iphone Screen config
             NSLayoutConstraint.activate([
+                // CardView Front
                 cardView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
                 cardView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                 cardView.widthAnchor.constraint(equalToConstant: screenSize.width / 2 + 100),
@@ -329,8 +335,9 @@ final class HomeViewController: UIViewController {
     }
     
     @objc private func getNewPokemon() {
-        hideElements()
+        showLoadingLabel()
         viewModel.fetchNewRandomPokemon()
+        Flip()
     }
 }
 
@@ -338,47 +345,43 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewModelDelegate {
     
     func updatePokemonFatures() {
-        DispatchQueue.main.async { [weak self] in
-            self?.pokemonNameTitleLabel.text = self?.viewModel.pokemon.name?.UpperFirst()
-            self?.hpPointTitleLabel.text = self?.viewModel.pokemon.stats?[.hp].base_stat?.ToString()
-            self?.attackPointTitleLabel.text = self?.viewModel.pokemon.stats?[.attack].base_stat?.ToString()
-            self?.defensePointTitleLabel.text = self?.viewModel.pokemon.stats?[.defense].base_stat?.ToString()
+        DispatchQueue.main.async {
+            self.pokemonNameTitleLabel.text = self.viewModel.pokemon.name?.UpperFirst()
+            self.hpPointTitleLabel.text = self.viewModel.pokemon.stats?[.hp].base_stat?.ToString()
+            self.attackPointTitleLabel.text = self.viewModel.pokemon.stats?[.attack].base_stat?.ToString()
+            self.defensePointTitleLabel.text = self.viewModel.pokemon.stats?[.defense].base_stat?.ToString()
         }
     }
     
     func loadImage(image: Any) {
         guard let img = image as? UIImage else { return }
-        DispatchQueue.main.async { [weak self] in
-            self?.imageView.image = nil
-            self?.imageView.image = img
+        DispatchQueue.main.async {
+            self.pokemonImageView.contentMode = .scaleAspectFill
+            self.pokemonImageView.image = nil
+            self.pokemonImageView.image = img
         }
     }
     
-    func unhideElements() {
-        DispatchQueue.main.async { [weak self] in
-            self?.loadingLabel.isHidden = true
-            self?.pokemonNameTitleLabel.isHidden = false
-            self?.imageView.isHidden = false
-            self?.hpTitleLabel.isHidden = false
-            self?.hpPointTitleLabel.isHidden = false
-            self?.attackTitleLabel.isHidden = false
-            self?.attackPointTitleLabel.isHidden = false
-            self?.defenseTitleLabel.isHidden = false
-            self?.defensePointTitleLabel.isHidden = false
+    func Flip() {
+        let transationOpt = UIView.AnimationOptions.transitionFlipFromLeft
+        UIView.transition(with: self.cardView, duration: 1.3, options: transationOpt) {
+            
+        } completion: { finished in
+            if finished {
+                self.hideLoadingLabel()
+            }
         }
     }
     
-    func hideElements() {
-        DispatchQueue.main.async { [weak self] in
-            self?.loadingLabel.isHidden = false
-            self?.pokemonNameTitleLabel.isHidden = true
-            self?.imageView.isHidden = true
-            self?.hpTitleLabel.isHidden = true
-            self?.hpPointTitleLabel.isHidden = true
-            self?.attackTitleLabel.isHidden = true
-            self?.attackPointTitleLabel.isHidden = true
-            self?.defenseTitleLabel.isHidden = true
-            self?.defensePointTitleLabel.isHidden = true
+    func showLoadingLabel() {
+        DispatchQueue.main.async {
+            self.loadingLabel.isHidden = false
+        }
+    }
+    
+    func hideLoadingLabel() {
+        DispatchQueue.main.async {
+            self.loadingLabel.isHidden = true
         }
     }
 }

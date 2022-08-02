@@ -53,9 +53,10 @@ enum ViewConstants {
     static let loadingLabelText = "Loading..."
     
     // MARK: - UIImageView
-    static let imageViewIphoneHeight = 100
-    static let imageViewIpadHeight = 200
-    
+    static let imageViewIphoneHeight = 160
+    static let imageViewIphoneWidth = 214
+    static let imageViewIpadHeight = 180
+    static let imageViewIpadWidth = 500
     
     
     // MARK: - UICardView

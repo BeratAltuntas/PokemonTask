@@ -17,3 +17,12 @@ class CustomUIView: UIView {
         }
     }
 }
+@IBDesignable
+class CustomUILabel: UILabel {
+    @IBInspectable
+    var cornerRadius: CGFloat = 0 {
+        didSet {
+            self.layer.cornerRadius = cornerRadius
+        }
+    }
+}
