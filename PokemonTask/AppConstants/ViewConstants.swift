@@ -25,6 +25,7 @@ enum ViewConstants {
     
     
     // MARK: - UILabels
+    static let labelsFontColor = UIColor(named: "LabelColors")
     // Title Label
     static let titleLabelFontSize = 24
     static let titleLabelTopConst = 18

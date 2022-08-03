@@ -35,6 +35,7 @@ final class HomeViewController: UIViewController {
     
     private var currentFlipType: FlipAnimationType = .transitionFlipFromLeft
     private var screenSize: CGRect = UIScreen.main.bounds
+    private var usersCurrentDeviceType = UIDevice.current.userInterfaceIdiom
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +126,7 @@ final class HomeViewController: UIViewController {
     private func createPokemonCardView() {
         cardView = CustomUIView()
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.cornerRadius = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.cardViewIphoneCornerRadius.ToCGFloat() : ViewConstants.cardViewIpadCornerRadius.ToCGFloat()
+        cardView.cornerRadius = usersCurrentDeviceType == .phone ? ViewConstants.cardViewIphoneCornerRadius.ToCGFloat() : ViewConstants.cardViewIpadCornerRadius.ToCGFloat()
         cardView.backgroundColor = .white
         
         // CardView Shadow
@@ -142,7 +143,7 @@ final class HomeViewController: UIViewController {
         pokemonNameTitleLabel = UILabel()
         pokemonNameTitleLabel.text = "" // pokemonModel.name
         pokemonNameTitleLabel.font = .rounded(ofSize: ViewConstants.titleLabelFontSize.ToCGFloat(), weight: .regular)
-        pokemonNameTitleLabel.tintColor = .black
+        pokemonNameTitleLabel.textColor = ViewConstants.labelsFontColor
         pokemonNameTitleLabel.textAlignment = .center
         pokemonNameTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(pokemonNameTitleLabel)
@@ -163,8 +164,8 @@ final class HomeViewController: UIViewController {
         pokemonImageView.startAnimating()
         pokemonImageView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(pokemonImageView)
-        let imageViewHeight = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.imageViewIphoneHeight : ViewConstants.imageViewIpadHeight
-        let imageViewWidth = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.imageViewIphoneWidth : ViewConstants.imageViewIpadWidth
+        let imageViewHeight = usersCurrentDeviceType == .phone ? ViewConstants.imageViewIphoneHeight : ViewConstants.imageViewIpadHeight
+        let imageViewWidth = usersCurrentDeviceType == .phone ? ViewConstants.imageViewIphoneWidth : ViewConstants.imageViewIpadWidth
         
         NSLayoutConstraint.activate([
             pokemonImageView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
@@ -181,10 +182,10 @@ final class HomeViewController: UIViewController {
         loadingLabel.font = .rounded(ofSize: ViewConstants.loadingLabelFontSize.ToCGFloat(), weight: .regular)
         loadingLabel.isHidden = false
         loadingLabel.layer.masksToBounds = true
-        loadingLabel.cornerRadius = ViewConstants.cardViewIpadCornerRadius.ToCGFloat()
+        loadingLabel.cornerRadius = usersCurrentDeviceType == .phone ? ViewConstants.cardViewIphoneCornerRadius.ToCGFloat() : ViewConstants.cardViewIpadCornerRadius.ToCGFloat()
         loadingLabel.layer.zPosition = 10
         loadingLabel.backgroundColor = .white
-        loadingLabel.tintColor = .black
+        loadingLabel.textColor = ViewConstants.labelsFontColor
         loadingLabel.textAlignment = .center
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -205,7 +206,7 @@ final class HomeViewController: UIViewController {
         hpTitleLabel = UILabel()
         hpTitleLabel.text = ViewConstants.featureHPTitleName // hp
         hpTitleLabel.font = .rounded(ofSize: ViewConstants.featureTitleLabelFontSize.ToCGFloat(), weight: .regular)
-        hpTitleLabel.tintColor = .black
+        hpTitleLabel.textColor = ViewConstants.labelsFontColor
         hpTitleLabel.textAlignment = .center
         hpTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(hpTitleLabel)
@@ -213,7 +214,7 @@ final class HomeViewController: UIViewController {
         hpPointTitleLabel = UILabel()
         hpPointTitleLabel.text = "" // hp point
         hpPointTitleLabel.font = .rounded(ofSize: ViewConstants.featurePointLabelFontSize.ToCGFloat(), weight: .medium)
-        hpPointTitleLabel.tintColor = .black
+        hpPointTitleLabel.textColor = ViewConstants.labelsFontColor
         hpPointTitleLabel.textAlignment = .center
         hpPointTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(hpPointTitleLabel)
@@ -224,7 +225,7 @@ final class HomeViewController: UIViewController {
         attackTitleLabel = UILabel()
         attackTitleLabel.text = ViewConstants.featureATTACKTitleName // attack
         attackTitleLabel.font = .rounded(ofSize: ViewConstants.featureTitleLabelFontSize.ToCGFloat(), weight: .regular)
-        attackTitleLabel.tintColor = .black
+        attackTitleLabel.textColor = ViewConstants.labelsFontColor
         attackTitleLabel.textAlignment = .center
         attackTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(attackTitleLabel)
@@ -232,7 +233,7 @@ final class HomeViewController: UIViewController {
         attackPointTitleLabel = UILabel()
         attackPointTitleLabel.text = "" // attack point
         attackPointTitleLabel.font = .rounded(ofSize: ViewConstants.featurePointLabelFontSize.ToCGFloat(), weight: .medium)
-        attackPointTitleLabel.tintColor = .black
+        attackPointTitleLabel.textColor = ViewConstants.labelsFontColor
         attackPointTitleLabel.textAlignment = .center
         attackPointTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(attackPointTitleLabel)
@@ -242,7 +243,7 @@ final class HomeViewController: UIViewController {
         defenseTitleLabel = UILabel()
         defenseTitleLabel.text = ViewConstants.featureDEFENSETitleName // defense
         defenseTitleLabel.font = .rounded(ofSize: ViewConstants.featureTitleLabelFontSize.ToCGFloat(), weight: .regular)
-        defenseTitleLabel.tintColor = .black
+        defenseTitleLabel.textColor = ViewConstants.labelsFontColor
         defenseTitleLabel.textAlignment = .center
         defenseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(defenseTitleLabel)
@@ -250,7 +251,7 @@ final class HomeViewController: UIViewController {
         defensePointTitleLabel = UILabel()
         defensePointTitleLabel.text = "" // defense point
         defensePointTitleLabel.font = .rounded(ofSize: ViewConstants.featurePointLabelFontSize.ToCGFloat(), weight: .medium)
-        defensePointTitleLabel.tintColor = .black
+        defensePointTitleLabel.textColor = ViewConstants.labelsFontColor
         defensePointTitleLabel.textAlignment = .center
         defensePointTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(defensePointTitleLabel)
@@ -300,7 +301,7 @@ final class HomeViewController: UIViewController {
     // MARK: layoutConstraints
     private func layoutConstraints() {
         
-        if .pad == UIDevice.current.userInterfaceIdiom {
+        if .pad == usersCurrentDeviceType {
             // ipad screen config
             NSLayoutConstraint.activate([
                 scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
