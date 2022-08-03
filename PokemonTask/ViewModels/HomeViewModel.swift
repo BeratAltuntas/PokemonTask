@@ -43,7 +43,6 @@ final class HomeViewModel {
                 completion(true)
             case .failure(let error):
                 print(error)
-                print("fetch poke count bum")
                 completion(false)
             }
         }
@@ -58,7 +57,6 @@ final class HomeViewModel {
             switch result {
             case .success(let response):
                 self?.pokemon = response
-                print(response)
                 self?.delegate.updatePokemonFatures()
                 completion(true)
             case .failure(let error):

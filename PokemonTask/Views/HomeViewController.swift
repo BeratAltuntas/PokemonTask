@@ -14,7 +14,7 @@ final class HomeViewController: UIViewController {
             viewModel.delegate = self
         }
     }
-
+    
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     private var refreshButton: CustomUIButton!
