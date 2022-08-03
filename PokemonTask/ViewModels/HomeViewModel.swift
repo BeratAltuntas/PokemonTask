@@ -23,7 +23,7 @@ protocol HomeViewModelDelegate: AnyObject {
     func loadImage(image: Any)
     func hideLoadingLabel()
     func showLoadingLabel()
-    func flip()
+    func flipCardView()
 }
 
 // MARK: - HomeViewModel
@@ -88,7 +88,7 @@ extension HomeViewModel: HomeViewModelProtocol {
     func loadViewAttiributes() {
         fetchPokemonCount { [weak self] success in
             if success {
-                self?.delegate.hideLoadingLabel()
+                self?.delegate.showLoadingLabel()
                 self?.fetchNewRandomPokemon()
             } else {
                 self?.loadViewAttiributes()
@@ -99,8 +99,6 @@ extension HomeViewModel: HomeViewModelProtocol {
     func fetchNewRandomPokemon() {
         fetchRandomPokemon { [weak self] success in
             if success {
-                self?.delegate.flip()
-                self?.delegate.hideLoadingLabel()
                 self?.getPokemonImage()
             } else {
                 self?.fetchNewRandomPokemon()
@@ -111,7 +109,7 @@ extension HomeViewModel: HomeViewModelProtocol {
     func getPokemonImage() {
         getImage { [weak self] success in
             if success {
-                self?.delegate.hideLoadingLabel()
+                self?.delegate.flipCardView()
                 self?.delegate.hideLoadingLabel()
             }
         }

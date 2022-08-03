@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import UIKit.UIColor
 
 // MARK: - ViewConstants
 enum ViewConstants {
@@ -56,7 +56,7 @@ enum ViewConstants {
     static let imageViewIphoneHeight = 160
     static let imageViewIphoneWidth = 214
     static let imageViewIpadHeight = 180
-    static let imageViewIpadWidth = 500
+    static let imageViewIpadWidth = 400
     
     
     // MARK: - UICardView
@@ -76,4 +76,10 @@ enum UIUserInterfaceIdiom : Int {
     
     case phone // iPhone and iPod touch style UI
     case pad   // iPad style UI (also includes macOS Catalyst)
+}
+
+// MARK: - CardFlip Animation Type
+enum FlipAnimationType {
+    case transitionFlipFromTop
+    case transitionFlipFromLeft
 }

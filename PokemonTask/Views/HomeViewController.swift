@@ -14,7 +14,7 @@ final class HomeViewController: UIViewController {
             viewModel.delegate = self
         }
     }
-    
+
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     private var refreshButton: CustomUIButton!
@@ -33,6 +33,7 @@ final class HomeViewController: UIViewController {
     
     private var loadingLabel: CustomUILabel!
     
+    private var currentFlipType: FlipAnimationType = .transitionFlipFromLeft
     private var screenSize: CGRect = UIScreen.main.bounds
     
     override func viewDidLoad() {
@@ -163,7 +164,7 @@ final class HomeViewController: UIViewController {
         pokemonImageView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(pokemonImageView)
         let imageViewHeight = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.imageViewIphoneHeight : ViewConstants.imageViewIpadHeight
-        let imageViewWidth = UIDevice.current.userInterfaceIdiom == .pad ? ViewConstants.imageViewIphoneWidth : ViewConstants.imageViewIpadWidth
+        let imageViewWidth = UIDevice.current.userInterfaceIdiom == .phone ? ViewConstants.imageViewIphoneWidth : ViewConstants.imageViewIpadWidth
         
         NSLayoutConstraint.activate([
             pokemonImageView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
@@ -257,7 +258,7 @@ final class HomeViewController: UIViewController {
         let labelwidth = (((screenSize.width / 2 + 100) - 36) / 3)
         
         NSLayoutConstraint.activate([
-            hpTitleLabel.topAnchor.constraint(lessThanOrEqualTo: pokemonImageView.bottomAnchor, constant: ViewConstants.hpTitleLabelTopConst.ToCGFloat()),
+            hpTitleLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: ViewConstants.hpTitleLabelTopConst.ToCGFloat()),
             hpTitleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: ViewConstants.hpTitleLabelLeadingConst.ToCGFloat()),
             hpTitleLabel.widthAnchor.constraint(equalToConstant: labelwidth),
             hpTitleLabel.heightAnchor.constraint(equalToConstant: ViewConstants.hpTitleLabelHeightConst.ToCGFloat()),
@@ -361,11 +362,21 @@ extension HomeViewController: HomeViewModelDelegate {
         }
     }
     
-    func flip() {
+    func flipCardView() {
         DispatchQueue.main.async { [weak self] in
-            let transationOpt = UIView.AnimationOptions.transitionFlipFromLeft
+            var transationOpt: UIView.AnimationOptions
+            switch self?.currentFlipType {
+            case .transitionFlipFromTop:
+                transationOpt = .transitionFlipFromTop
+                self?.currentFlipType = .transitionFlipFromLeft
+            case .transitionFlipFromLeft:
+                transationOpt = .transitionFlipFromLeft
+                self?.currentFlipType = .transitionFlipFromTop
+            default:
+                transationOpt = .transitionFlipFromLeft
+            }
+            
             UIView.transition(with: (self?.cardView)!, duration: 1.3, options: transationOpt) {
-                
             } completion: { finished in
                 if finished {
                     self?.hideLoadingLabel()
